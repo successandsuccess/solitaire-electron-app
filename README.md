@@ -1,0 +1,1 @@
+# solitaire-electron-app
