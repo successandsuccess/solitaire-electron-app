@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <script src="game.js" defer></script>
+  <title>Solitaire</title>
+</head>
+<body>
+  <div class="full-screen-container hidden">
+    <div class="prompt">
+      <button class="btn-close">X</button>
+      <div class="content-about hidden">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p>image in menu by TAMGRA from Pixabay</p>
+        </div>
+        <div class="content-win hidden">
+          <p>YOU</p><p>WIN</p>
+        </div>
+    </div>
+  </div>
+  <button class="btn-gear"><img src="./media/images/hud/gear.svg" target="_blank"></button>
+  <div class="menu">
+    <button class="btn-restart"><img src="./media/images/hud/restart.svg"></button>
+    <button class="btn-design"><img src="./media/images/hud/theme.png"></button>
+    <button class="btn-design" id="btn-undo"><img src="./media/images/hud/undo.svg"></button>
+  </div>
+  <div class="moving-cards hidden"></div>
+  <div class="play-area">
+    <div id="stock"></div>
+    <div id="waste"></div>
+    <div id="info-space"></div>
+    <div class="foundation" id="fnd-0"></div>
+    <div class="foundation" id="fnd-1"></div>
+    <div class="foundation" id="fnd-2"></div>
+    <div class="foundation" id="fnd-3"></div>
+
+    <div class="tableau" id="tab-0"></div>
+    <div class="tableau" id="tab-1"></div>
+    <div class="tableau" id="tab-2"></div>
+    <div class="tableau" id="tab-3"></div>
+    <div class="tableau" id="tab-4"></div>
+    <div class="tableau" id="tab-5"></div>
+    <div class="tableau" id="tab-6"></div>
+  </div>
+  <div id="preload" class="hidden"></div>
+  <audio id="bg-music"></audio>
+  <script>
+    const tracks = [
+      'sounds/track1.mp3',
+      'sounds/track2.mp3',
+      'sounds/track3.mp3'
+    ];
+
+    const bgMusic = document.getElementById('bg-music');
+    let currentTrack = 0;
+
+    function playNextTrack() {
+      bgMusic.src = tracks[currentTrack];
+      bgMusic.volume = 0.5;
+      bgMusic.play();
+
+      currentTrack = (currentTrack + 1) % tracks.length;
+    }
+
+    bgMusic.addEventListener('ended', () => {
+      playNextTrack();
+    });
+
+    // Start music on first user click
+    window.addEventListener('DOMContentLoaded', () => {
+      if (navigator.userAgent.includes('Electron')) {
+        playNextTrack();
+      } else {
+        document.addEventListener('click', () => {
+          playNextTrack();
+        }, { once: true });
+      }
+    });
+
+
+  </script>
+</body>
+</html>

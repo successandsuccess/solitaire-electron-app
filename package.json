@@ -1,0 +1,25 @@
+{
+  "name": "solitaire",
+  "version": "1.0.0",
+  "description": "Welcome to my new project! This time I'm making something I wanted to create since I started learning about DOM methods: a classic klondike Solitaire. I've been prototyping a little before creating this repository, and I think I came with a good enough way to recreate this game.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.yourname.solitaire",
+    "files": [
+      "**/*"
+    ],
+    "win": {
+      "icon": "media/ic.png"
+    }
+  }
+}
