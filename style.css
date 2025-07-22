@@ -15,6 +15,9 @@ body {
   overflow: hidden;
 }
 
+.switch-game {
+  scale: 1.3;
+}
 
 
 /* - - - hud - - - */
@@ -73,6 +76,7 @@ body {
 }
 .btn-restart,
 .btn-design,
+.btn-undo,
 .btn-about {
   display: flex;
   justify-content: center;
@@ -95,11 +99,12 @@ body {
   filter: drop-shadow(0 0 .1em black);
   rotate: 360deg;
 }
-.btn-design:hover {
+.btn-design:hover,.btn-undo:hover {
   filter: drop-shadow(0 0 .2em white);
 }
 .btn-restart:active,
 .btn-design:active,
+.btn-undo:active,
 .btn-about:active {
   transition: 100ms;
   filter: drop-shadow(0 0 .3em white);
@@ -183,11 +188,14 @@ body {
 
 .card {
   width: var(--card-size);
-  max-width: 175px;
+  /* max-width: 155px; */
+  max-width: 105px;
   height: auto;
   position: absolute;
   transition: 250ms;
-}.card:hover{
+  border-radius: 5px;
+}
+.card:hover{
   filter: drop-shadow(0 0 5px white);
   margin-top: -2px;
 }

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Spider Solitaire</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- CSS Files Link-->
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/cards.css">
+	</head>
+	<body>
+
+		<button class="btn-gear"><img src="../media/images/hud/gear.svg" target="_blank"></button>
+		<div class="menu">
+			<button class="btn-new"><a href="index.html"><img src="../media/images/hud/restart.svg" class="new-game"></a></button>
+			<button class="btn-design"><a href="../index.html"><img src="../media/images/hud/theme.png" class="switch-game"></a></button>
+			<button class="btn-undo" id="btn-undo"><img src="../media/images/hud/undo.svg"></button>
+		</div>
+
+		<form action = "index.html" name = "startGame" id = "startGame" class = "start-form" style="display: block;">
+			<div class="title">Choose a Difficulty Level</div>
+			<label class="game-option">
+				<input type="radio" name="radioBtn" value = "1" checked>
+				<span class="suit one">One suit</span>
+			</label>
+			<label class="game-option">
+				<input type="radio" name="radioBtn" value = "2">
+				<span class="suit two">Two suits</span>
+			</label>
+			<label class="game-option">
+				<input type="radio" name="radioBtn" value = "4">
+				<span class="suit four">Four suits</span>
+			</label>
+			<input type="submit" value="Play">
+		</form>
+
+
+		<div class="congratulation">
+			<div class="full-screen-container">
+				<div class="prompt">
+					<button class="btn-close">X</button>
+					<div class="content-win">
+						<p>YOU</p><p>WIN</p>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+		</div>
+
+		<div class="wrapper">
+			<div class="score">
+				<label>Moves: </label>
+				<label id="score">0</label>
+			</div>
+
+			<ul class="column" data-height=""></ul>
+			<ul class="column" data-height=""></ul>
+			<ul class="column" data-height=""></ul>
+			<ul class="column" data-height=""></ul>
+			<ul class="column" data-height=""></ul>
+			<ul class="column" data-height=""></ul>
+			<ul class="column" data-height=""></ul>
+			<ul class="column" data-height=""></ul>
+			<ul class="column" data-height=""></ul>
+			<ul class="column" data-height=""></ul>
+
+			<div class="offside">
+				<ul class="source" id="source"></ul>
+				<ul class="dropout" id="dropout"></ul>
+			</div>
+		</div>
+
+		<ul class="drag-el" id="drag-el"></ul>
+
+		<audio id="bg-music"></audio>
+		<script>
+			const tracks = [
+			'sounds/track4.mp3',
+			'sounds/track5.mp3',
+			'sounds/track6.mp3',
+			'sounds/track7.mp3'
+			];
+
+			const bgMusic = document.getElementById('bg-music');
+			let currentTrack = 0;
+
+			function playNextTrack() {
+			bgMusic.src = tracks[currentTrack];
+			bgMusic.volume = 0.5;
+			bgMusic.play();
+
+			currentTrack = (currentTrack + 1) % tracks.length;
+			}
+
+			bgMusic.addEventListener('ended', () => {
+			playNextTrack();
+			});
+
+			// Start music on first user click
+			window.addEventListener('DOMContentLoaded', () => {
+			if (navigator.userAgent.includes('Electron')) {
+				playNextTrack();
+			} else {
+				document.addEventListener('click', () => {
+				playNextTrack();
+				}, { once: true });
+			}
+			});
+
+
+		</script>
+
+		<script src="js/cardDeck.js"></script>
+		<script src="js/cardDealer.js"></script>
+		<script src="js/cardAnimation.js"></script>
+		<script src="js/dragEvent.js"></script>
+		<script src="js/sound.js"></script>
+		<script src="js/script.js"></script>
+
+		
+	</body>
+</html>

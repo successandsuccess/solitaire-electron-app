@@ -191,6 +191,8 @@ function dragCard(){
       isValidMove({ascendingNumber:false,sameSuit:false,needsSameColor:false})
     }
   }
+
+
 }
 
 //function to check if move is valid
@@ -286,6 +288,10 @@ function moveCards(){
   for (let i = howMany; i > 0; i--) {
     removeFromHere.pop()
   }
+
+    // when release sound is coming.
+    popSound = new Sound('./spiderette/audio/pop.mp3');
+    popSound.play();
 
   redrawCards()
 }
@@ -721,16 +727,6 @@ $btnRestart.addEventListener("click", () => {
   newGame()
 })
 
-$btnDesign.addEventListener("click", () =>{
-  if(deckDesign === "traditional"){
-    deckDesign = "russian"
-  } else if(deckDesign === "russian"){
-    deckDesign = "traditional"
-  }
-  redrawCards()
-})
-
-
 $btnClose.addEventListener("click", promptAction)
 
 //mouse events on window
@@ -810,3 +806,23 @@ document.getElementById('btn-undo').addEventListener('click', () => {
     redrawCards();
   }
 });
+
+
+
+function Sound(src) {
+	this.sound = document.createElement('audio');
+	this.sound.src = src;
+	this.sound.setAttribute('preload','auto');
+	this.sound.setAttribute('controls','none');
+	this.sound.style.display = 'none';
+
+	document.body.appendChild(this.sound);
+
+	this.play = function() {
+		this.sound.play();
+	}
+
+	this.stop = function() {
+		this.sound.pause();
+	}
+}
